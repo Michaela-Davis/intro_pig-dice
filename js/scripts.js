@@ -6,9 +6,7 @@ function Player(firstName, score) {
 };
 
 Player.prototype.updateScore = function() {
-  console.log(runningTotal);
   this.score = this.score + runningTotal
-  console.log(this.score);
 };
 
 var player1
@@ -25,6 +23,14 @@ function roll(player) {
 
   } else if ((player.score + runningTotal + currentRoll) >= 100) {
     alert("Winner!!!")
+    runningTotal = runningTotal + currentRoll;
+    player.updateScore();
+    $(".row").hide();
+    $("#trophy").show();
+    $("#winner").show();
+    $('#winner').text(player.firstName);
+    setTimeout(location.reload.bind(location), 5000);
+
   } else {
     runningTotal = runningTotal + currentRoll;
   }
@@ -47,6 +53,7 @@ $(document).ready(function() {
     player2 = new Player(player2Name, 0);
     $(".player1Name").text(player1.firstName);
     $(".player2Name").text(player2.firstName);
+    $("form").hide();
   });
 
   $("#player1Roll").click(function() {
@@ -82,6 +89,4 @@ $(document).ready(function() {
     $('#runningTotal').text('0');
 
   });
-
-
 });
