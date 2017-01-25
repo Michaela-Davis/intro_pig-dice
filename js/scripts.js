@@ -20,6 +20,9 @@ function roll(player) {
   if (currentRoll === 1) {
     alert("Oh No!");
     runningTotal = 0;
+    $("#player2Roll").hide();
+    $("#player1Roll").hide();
+
   } else if ((player.score + runningTotal + currentRoll) >= 100) {
     alert("Winner!!!")
   } else {
@@ -47,34 +50,36 @@ $(document).ready(function() {
   });
 
   $("#player1Roll").click(function() {
-    roll(player1);
     $("#player2Pass").hide();
     $("#player2Roll").hide();
     $("#player1Pass").show();
     $("#player1Roll").show();
+    roll(player1);
   });
   $("#player2Roll").click(function() {
-    roll(player2);
     $("#player1Pass").hide();
     $("#player1Roll").hide();
     $("#player2Pass").show();
     $("#player2Roll").show();
+    roll(player2);
   });
   $("#player1Pass").click(function() {
-    pass(player1);
     $("#player2Pass").hide();
     $("#player1Roll").hide();
     $("#player1Pass").show();
     $("#player2Roll").show();
+    pass(player1);
     $(".player1Score").text(player1.score);
+    $('#runningTotal').text('0');
   });
   $("#player2Pass").click(function() {
-    pass(player2);
     $("#player1Pass").hide();
     $("#player2Roll").hide();
     $("#player2Pass").show();
     $("#player1Roll").show();
+    pass(player2);
     $(".player2Score").text(player2.score);
+    $('#runningTotal').text('0');
 
   });
 

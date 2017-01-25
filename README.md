@@ -25,10 +25,10 @@ _Does not require a server or setting up a database._
 * The program generates a random number between 1 and 6 upon "roll" click.
   * Input Example: click the "roll" button
   * Output Example: 3
-* The program ends the turn upon "rolling" a 1
+* The program ends the turn upon "rolling" a 1.
   * Input Example: 1
   * Output Example: alert "next player's turn"
-* The program keeps a running total of your current turns score
+* The program keeps a running total of your current turns score.
   * Input Example: 5, 5, 5, 5, 5, 5, 5
   * Output Example: 35
 * The program allows the user to choose to "pass" which adds running total to their current score.
