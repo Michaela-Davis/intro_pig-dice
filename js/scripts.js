@@ -5,15 +5,31 @@ function Player(firstName, score) {
   this.score = score;
 };
 
-Player.prototype.pass = function() {
+Player.prototype.updateScore = function() {
+  console.log(runningTotal);
   this.score = this.score + runningTotal
+  console.log(this.score);
 };
 
 var player1
 var player2
+var runningTotal = 0
 
+function roll(player) {
+  var currentRoll = Math.floor((Math.random() * 6) + 1);
+  $('#runningTotal').text(currentRoll);
+  if (currentRoll === 1) {
+    alert("Oh No!");
+    pass(player, 0)
+  } else {
+    runningTotal = runningTotal + currentRoll;
+  }
+}
 
-
+function pass(player, runningTotal) {
+  player.updateScore();
+  runningTotal = 0;
+}
 
 
 ///////////////// FRONT END LOGIC
@@ -27,4 +43,22 @@ $(document).ready(function() {
     $(".player1Name").text(player1.firstName);
     $(".player2Name").text(player2.firstName);
   });
+
+  $("#player1Roll").click(function() {
+    roll(player1);
+  });
+  $("#player2Roll").click(function() {
+    roll(player2);
+  });
+  $("#player1Pass").click(function() {
+    pass(player1, runningTotal);
+    $(".player1Score").text(player1.score);
+  });
+  $("#player2Pass").click(function() {
+    pass(player2, runningTotal);
+    $(".player2Score").text(player2.score);
+
+  });
+
+
 });
