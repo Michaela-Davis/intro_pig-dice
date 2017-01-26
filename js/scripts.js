@@ -13,6 +13,7 @@ Player.prototype.updateScore = function() {
 var player1
 var player2
 var runningTotal = 0
+var computerPlayer
 
 function roll(player) {
   if (player.playerID === 'player1') {
@@ -31,8 +32,11 @@ function roll(player) {
   if (currentRoll === 1) {
     alert("Oh No!");
     runningTotal = 0;
-    $("#player2Roll").hide();
-    $("#player1Roll").hide();
+    if (player.playerID === 'player1') {
+      pass(player1);
+    } else {
+      pass(player2);
+    }
 
   } else if ((player.score + runningTotal + currentRoll) >= 100) {
     alert("Winner!!!")
@@ -60,6 +64,15 @@ function pass(player) {
     runningTotal = 0;
     $(".player1Score").text(player1.score);
     $('#runningTotal').text('0');
+    if (computerPlayer) {
+      roll(player2);
+      if (runningTotal === 0) {
+        pass(player2);
+      } else {
+        roll(player2);
+        pass(player2);
+      }
+    };
   } else {
     $("#player2Pass").hide();
     $("#player2Roll").hide();
@@ -83,8 +96,14 @@ $(document).ready(function() {
     player2 = new Player(player2Name, 0, 'player2');
     $(".player1Name").text(player1.firstName);
     $(".player2Name").text(player2.firstName);
-    $("form").hide();
+    // $("form").hide();
   });
+
+  $('#computerPlayer').click(function() {
+    computerPlayer = true;
+    $('#player2Pass').remove();
+    $('#player2Roll').remove();
+  })
 
   $("#player1Roll").click(function() {
     roll(player1);
