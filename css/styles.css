@@ -8,10 +8,20 @@ form {
   margin-bottom: 50px;
 }
 
+.player1Area {
+    text-align: center;
+}
+
+.player2Area {
+    text-align: center;
+}
+
 .diceArea img {
   max-width: 200px;
   margin-top: 50px;
   margin-bottom: 50px;
+  margin-right: 50px;
+  text-align: center;
 }
 
 .player1Roll {

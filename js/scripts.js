@@ -1,8 +1,9 @@
 /////////////BACK END LOGIC
 
-function Player(firstName, score) {
+function Player(firstName, score, playerID) {
   this.firstName = firstName;
   this.score = score;
+  this.playerID = playerID;
 };
 
 Player.prototype.updateScore = function() {
@@ -14,6 +15,18 @@ var player2
 var runningTotal = 0
 
 function roll(player) {
+  if (player.playerID === 'player1') {
+    $("#player2Pass").hide();
+    $("#player2Roll").hide();
+    $("#player1Pass").show();
+    $("#player1Roll").show();
+  } else {
+    $("#player1Pass").hide();
+    $("#player1Roll").hide();
+    $("#player2Pass").show();
+    $("#player2Roll").show();
+  }
+
   var currentRoll = Math.floor((Math.random() * 6) + 1);
   if (currentRoll === 1) {
     alert("Oh No!");
@@ -38,8 +51,25 @@ function roll(player) {
 }
 
 function pass(player) {
-  player.updateScore();
-  runningTotal = 0;
+  if (player.playerID === 'player1') {
+    $("#player1Pass").hide();
+    $("#player1Roll").hide();
+    $("#player2Pass").show();
+    $("#player2Roll").show();
+    player.updateScore();
+    runningTotal = 0;
+    $(".player1Score").text(player1.score);
+    $('#runningTotal').text('0');
+  } else {
+    $("#player2Pass").hide();
+    $("#player2Roll").hide();
+    $("#player1Pass").show();
+    $("#player1Roll").show();
+    player.updateScore();
+    runningTotal = 0;
+    $(".player2Score").text(player2.score);
+    $('#runningTotal').text('0');
+  }
 }
 
 
@@ -49,44 +79,25 @@ $(document).ready(function() {
     event.preventDefault();
     var player1Name = $('input#player1').val();
     var player2Name = $('input#player2').val();
-    player1 = new Player(player1Name, 0);
-    player2 = new Player(player2Name, 0);
+    player1 = new Player(player1Name, 0, 'player1');
+    player2 = new Player(player2Name, 0, 'player2');
     $(".player1Name").text(player1.firstName);
     $(".player2Name").text(player2.firstName);
     $("form").hide();
   });
 
   $("#player1Roll").click(function() {
-    $("#player2Pass").hide();
-    $("#player2Roll").hide();
-    $("#player1Pass").show();
-    $("#player1Roll").show();
     roll(player1);
   });
+
   $("#player2Roll").click(function() {
-    $("#player1Pass").hide();
-    $("#player1Roll").hide();
-    $("#player2Pass").show();
-    $("#player2Roll").show();
     roll(player2);
   });
+
   $("#player1Pass").click(function() {
-    $("#player1Pass").hide();
-    $("#player1Roll").hide();
-    $("#player2Pass").show();
-    $("#player2Roll").show();
     pass(player1);
-    $(".player1Score").text(player1.score);
-    $('#runningTotal').text('0');
   });
   $("#player2Pass").click(function() {
-    $("#player2Pass").hide();
-    $("#player2Roll").hide();
-    $("#player1Pass").show();
-    $("#player1Roll").show();
     pass(player2);
-    $(".player2Score").text(player2.score);
-    $('#runningTotal').text('0');
-
   });
 });
