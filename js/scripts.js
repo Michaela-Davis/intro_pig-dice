@@ -71,18 +71,18 @@ $(document).ready(function() {
     roll(player2);
   });
   $("#player1Pass").click(function() {
-    $("#player2Pass").hide();
+    $("#player1Pass").hide();
     $("#player1Roll").hide();
-    $("#player1Pass").show();
+    $("#player2Pass").show();
     $("#player2Roll").show();
     pass(player1);
     $(".player1Score").text(player1.score);
     $('#runningTotal').text('0');
   });
   $("#player2Pass").click(function() {
-    $("#player1Pass").hide();
+    $("#player2Pass").hide();
     $("#player2Roll").hide();
-    $("#player2Pass").show();
+    $("#player1Pass").show();
     $("#player1Roll").show();
     pass(player2);
     $(".player2Score").text(player2.score);

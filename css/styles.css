@@ -1,7 +1,28 @@
+body {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 200%;
+}
+
+form {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
 .diceArea img {
   max-width: 200px;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.player1Roll {
+  margin-left: 150px;
+}
+
+#player2Roll {
+  background-color: #23d3cd;
+}
+#player2Pass {
+  background-color: #23d3cd;
 }
 
 #trophy, #winner {
@@ -12,9 +33,4 @@
   display: block;
   position: absolute;
   margin-left: 575px;
-}
-
-form {
-  margin-top: 30px;
-  margin-bottom: 50px;
 }
